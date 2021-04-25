@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .box{
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <!--<img src="image/1.jpg" onload="this.style.marginTop = (parseInt(this.parentNode.style.height) - this.height)/2 + 'px';this.style.marginLeft = (parseInt(this.parentNode.style.width) - this.width) /2 + 'px'">-->
+    <img src="image/1.jpg" onload="this.style.marginTop = (100-this.height)/2+'px';this.style.marginLeft=(100-this.width)/2+'px';">
+</div>
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+
+    });
+</script>
+</body>
+</html>

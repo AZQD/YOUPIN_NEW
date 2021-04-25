@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			
+			ul .test li span{
+					color:#999;
+				}
+			ul .test li{ 
+				color:red;
+			}
+			
+		</style>
+		
+	</head>
+	<body>
+		
+			
+			
+		<div class="content">
+			
+			<ul class="test" style="margin-top: 400px;">
+				<li data-item-img="img/1.jpg"><img src="img/1.jpg"></li>
+				<li data-item-img="img/2.jpg"><img src="img/1.jpg"></li>
+				<li data-item-img="img/3.jpg"><img src="img/1.jpg"></li>
+				<li data-item-img="img/4.jpg"><img src="img/1.jpg"></li>
+			</ul>
+			
+		</div>
+		
+		
+		<script type="text/javascript">
+			var viewPortHeight = window.innerHeight;
+			window.onresize = function(){
+				viewPortHeight = window.innerHeight; //浏览器窗口的视口(viewport)高度
+				console.log("视口高度： %o", viewPortHeight);
+			};
+			
+			window.onscroll = function(){
+				var lis = document.querySelectorAll('[data-item-img]');
+				for(var i=0; i<lis.length; i++){
+					var rectTop = lis[i].getBoundingClientRect().top;//元素上边距离页面上边的距离
+					//console.log(" %o", );
+					if(rectTop < viewPortHeight){
+						var img = lis[i].querySelector('img');
+						img.src = lis[i].dataset.itemImg;
+					}
+				}
+			}
+
+
+		</script>
+	</body>
+</html>

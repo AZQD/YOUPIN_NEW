@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    var url = 'https://work.bugtags.com/apps/1544868383949969/issues/1560840539999051/tags/1560840539999700?flags=0&members=1550605323605039&page=1';
+    console.log(url.indexOf('?'));
+    var result = url.slice(url.indexOf('?')+1);
+    console.log(result);
+    result = result.split('&');
+    console.log(result);
+    for(var i=0; i<result.length; i++){
+        console.log(result[i].split('=')[0],result[i].split('=')[1]);
+    }
+</script>
+</body>
+</html>

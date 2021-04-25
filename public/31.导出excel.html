@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table id="customers" class="table table-striped" >
+    <thead>
+    <tr class='warning'>
+        <th>Country</th>
+        <th>Population</th>
+        <th>Date</th>
+        <th>%ge</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Chinna</td>
+        <td>1,363,480,000</td>
+        <td>March 24, 2014</td>
+        <td>19.1</td>
+    </tr>
+    <tr>
+        <td>India</td>
+        <td>1,241,900,000</td>
+        <td>March 24, 2014</td>
+        <td>17.4</td>
+    </tr>
+    <tr>
+        <td>United States</td>
+        <td>317,746,000</td>
+        <td>March 24, 2014</td>
+        <td>4.44</td>
+    </tr>
+    <tr>
+        <td>Indonesia</td>
+        <td>249,866,000</td>
+        <td>July 1, 2013</td>
+        <td>3.49</td>
+    </tr>
+    <tr>
+        <td>Brazil</td>
+        <td>201,032,714</td>
+        <td>July 1, 2013</td>
+        <td>2.81北京</td>
+    </tr>
+    </tbody>
+</table>
+<button id="btn">btn</button>
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+
+<!--<script type="text/javascript" src="js/tableExport.js"></script> &lt;!&ndash;不支持导出部分行&ndash;&gt;-->
+<!--<script type="text/javascript" src="js/jquery.base64.js"></script>-->
+
+<!--<script type="text/javascript" src="js/FileSaver.js"></script>-->  <!--支持导出行和列，但是会乱码-->
+<!--<script type="text/javascript" src="js/tableexport2.js"></script>-->
+
+<script type="text/javascript" src="js/tableExportNew.js"></script><!--都支持，不会乱码-->
+<script type="text/javascript">
+    console.log($('#customers').html());
+    $('#btn').click(function(){
+        $('#customers').tableExport(
+                {
+                    type:'excel',
+                    escape:'false',
+//                    ignoreColumn: [2,3]
+                    ignoreRow: [2,3]
+                }
+        );
+    });
+</script>
+</body>
+</html>

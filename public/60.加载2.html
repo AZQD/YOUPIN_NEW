@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+    <meta charset='utf-8' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <meta name="format-detection"content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstraptc.min.css">
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="css/ppublic.css">
+    <style type="text/css">
+        .loading{
+            position: absolute;
+            z-index: 999;
+            left: calc(50% - 1.875rem);
+        }
+        .loading .loading-aside{
+            width: 1.875rem;
+            height: 1.875rem;
+            margin: 0 auto;
+            border-radius: 0.9375rem;
+            position: relative;
+            margin-top:12.6875rem;
+        }
+        .loading .loading-ul{
+            position: relative;
+            left: calc(50% - 0.09375rem);
+        }
+        @-moz-keyframes loadingAnimate{
+            0%{
+                background-color: #989a9c;
+            }
+            100%{
+                background-color: #d8dbdc;
+            }
+        }
+        @-webkit-keyframes loadingAnimate{
+            0%{
+                background-color: #989a9c;
+            }
+            100%{
+                background-color: #d8dbdc;
+            }
+        }
+        @-o-keyframes loadingAnimate{
+            0%{
+                background-color: #989a9c;
+            }
+            100%{
+                background-color: #d8dbdc;
+            }
+        }
+        @keyframes loadingAnimate{
+            0%{
+                background-color: #989a9c;
+            }
+            100%{
+                background-color: #d8dbdc;
+            }
+        }
+        .loading .loading-li{
+            width: 0.1875rem;
+            height: 0.46875rem;
+            background-color: #d8dbdc;
+            position: absolute;
+            -moz-transform-origin:0.09375rem 0.9375rem;
+            -webkit-transform-origin:0.09375rem 0.9375rem;
+            -o-transform-origin:0.09375rem 0.9375rem;
+            transform-origin:0.09375rem 0.9375rem;
+        }
+        .loading .loading-text{
+            text-align: center;
+            color: #c3c6c7;
+            font-size: 0.9375rem;
+            padding-top:1.25rem;
+        }
+    </style>
+</head>
+<body>
+
+<aside class="loading"><div class="loading-aside"><ul class="loading-ul"></ul></div><p class="loading-text">正在加载</p></aside>
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        for (var i=0;i<12;i++){
+            var $loadingLi = $('<li class="loading-li"></li>');
+            $loadingLi.css({
+                '-moz-transform': "rotate("+30*i+"deg)",
+                '-webkit-transform': "rotate("+30*i+"deg)",
+                '-o-transform': "rotate("+30*i+"deg)",
+                'transform': "rotate("+30*i+"deg)"
+            });
+            $loadingLi.appendTo($('.loading-ul'));
+        }
+        var loadingIndex = 0;
+        setInterval(function(){
+            if(loadingIndex == 11){
+                loadingIndex =8;
+            }
+            $('.loading-li').slice(loadingIndex,loadingIndex+4).css({
+                '-moz-animation': 'loadingAnimate 1s infinite linear',
+                '-webkit-animation': 'loadingAnimate 1s infinite linear',
+                '-o-animation': 'loadingAnimate 1s infinite linear',
+                'animation': 'loadingAnimate 1s infinite linear'
+            });
+            loadingIndex ++;
+        }, 100);
+    });
+</script>
+</body>
+</html>

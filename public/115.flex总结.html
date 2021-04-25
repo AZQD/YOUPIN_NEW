@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="x-dns-prefetch-control" content="on"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <style type="text/css">
+        #test{
+            display: flex;
+        }
+        .item1{
+            flex-grow: 1;
+            flex-basis:100px;
+
+            /*flex-shrink:1;*/
+            background-color: red;
+        }
+        .item2{
+            flex-grow: 4;
+            /*flex-shrink:1;*/
+            background-color: #ff58b9;
+        }
+        .item3{
+            flex-grow: 1;
+            /*flex-shrink:3;*/
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+<ul id="test">
+    <li class="item1">01</li>
+    <li class="item2">02</li>
+    <li class="item3">03</li>
+</ul>
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+    //flex:flex 属性用于设置或检索弹性盒模型对象的子元素如何分配空间。flex 属性是 flex-grow、flex-shrink 和 flex-basis 属性的简写属性。
+    //flex-grow:一个数字，规定项目将相对于其他灵活的项目进行扩展的量。
+    //flex-shrink:一个数字，规定项目将相对于其他灵活的项目进行收缩的量。
+    //flex-basis:项目的长度。合法值："auto"、"inherit" 或一个后跟 "%"、"px"、"em" 或任何其他长度单位的数字。
+</script>
+</body>
+</html>

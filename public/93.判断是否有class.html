@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .active{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<button id="btn" class="active">btn</button>
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+    //addClass removeClass hasClass toggleClass
+    /*$('#test .list').hasClass('active').click(function () {
+        alert(1);
+    });*/
+    if($('#btn').is('.active')){
+        $(this).click(function () {
+            alert(1);
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .sign{
+            background-color: fuchsia;
+        }
+        .add{
+            background-color: deeppink;
+        }
+    </style>
+</head>
+<body>
+    <ul id="test">
+        <li>01</li>
+        <li id="li2">02</li>
+        <li>03</li>
+        <li class="sign">04</li>
+        <li class="last">05</li>
+    </ul>
+    <!--<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>-->
+    <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var arr = ['you', 'pin', 'family'];
+            //$核心函数
+            $.each(arr, function(index, item){
+                console.log(index, item);
+            });
+
+            var str = '  study  ';
+            console.log('--'+$.trim(str)+'--');
+
+            console.log($.type('类型属性'));
+
+            console.log($.isFunction(function(){}));
+
+            console.log($.isArray(arr));
+
+            console.log($.parseJSON('{"name":"beijing","age":"12"}'));
+
+            //2.$()核心对象
+            var result = $('li').index($('#li2'));
+            console.log(result); //1
+
+            console.log($('li').length); //5
+
+            console.log($('li').size()); //5
+            
+            $('li').each(function(index, item){
+                console.log(index, item);
+            });
+
+            $('li').eq(0).css('color', 'red');
+
+            $('li').eq(1).addClass('add');
+
+            $('li').removeClass('sign');
+
+            console.log($('li').hasClass('last'));//true
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        table{
+            /*border: 1px solid blue;*/
+        }
+        tr,td{
+            /*border: 1px solid red;*/
+        }
+        .aboutSelect{
+            width:100%;
+            height:100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <table border="1" style="text-align: center;">
+        <tr style="text-align: center;">
+
+            <td width="300px;" style="text-align: center;">
+            <select class="aboutSelect" style="text-align: right;">
+                <!--<option value=""></option>-->
+                <option style="text-align: right;"><span style="display: inline-block;width: 100%;height: 100%;text-align: justify;">111</span></option>
+                <option>222</option>
+                <option>333</option>
+            </select>
+            </td>
+            <td>1212</td>
+            <td>121212</td>
+            <td>
+                <input type="text" value="hello">
+            </td>
+        </tr>
+    </table>
+
+    <button id="btn">btn</button>
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript">
+        $('#btn').click(function(){
+//            alert($('.aboutSelect').val());
+//            $('.aboutSelect').val('beijing');
+//            $(".aboutSelect ").get(2).value = value;
+//            $('option:first:selected').css('color','red');
+
+            $(".aboutSelect ").get(0).selectedIndex=2;
+            /*$("#ddlRegType ").attr("value","Normal“);
+
+            $("#ddlRegType ").val("Normal");
+
+            $(".aboutSelect ").get(0).value = value;*/
+        });
+    </script>
+</body>
+</html>

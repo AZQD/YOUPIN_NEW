@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="ipt">
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+    $(function(){//一旦输入框有变化，就会刷新数据；
+        $('#ipt').unbind('input propertychange').bind('input propertychange',function(){
+            console.log('input');
+        });
+    });
+</script>
+</body>
+</html>

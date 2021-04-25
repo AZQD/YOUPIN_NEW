@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box1{
+            width:100px;
+            height:100px;
+            background-color: #bfa;
+            position: relative;
+        }
+        .box2{
+            width:100px;
+            height:100px;
+            background-color: pink;
+        }
+        .box3{
+            width:100px;
+            height:100px;
+            background-color: deeppink;
+        }
+        .box4{
+            width:100px;
+            height:100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div><button id="btn1">btn1</button>
+    <div class="box2"></div><button id="btn2">btn2</button>
+    <div class="box3"></div><button id="btn3">btn3</button>
+    <div class="box4"></div><button id="btn4">btn4</button>
+    <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            /*animate*/
+            $('#btn1').on('click', function(){
+                $('.box1').animate({
+                    left : 200
+                },1000, 'linear');
+            });
+            $('#btn2').on('click', function(){
+                $('.box2').slideToggle(1000); //slideUp();  slideDown();
+            });
+            $('#btn3').on('click', function(){
+                $('.box3').fadeToggle(1000); //fadeIn();  fadeOut();
+            });
+            $('#btn4').on('click', function(){
+                $('.box4').toggle(1000);      //show(); hide();
+            });
+        });
+    </script>
+</body>
+</html>

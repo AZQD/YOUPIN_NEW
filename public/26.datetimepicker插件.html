@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/jquery-ui-1.8.17.custom.css">
+    <link rel="stylesheet" href="css/jquery-ui-timepicker-addon.css">
+</head>
+<body>
+
+<input type="text" id="dyStartDateTime"><br/>
+<input type="text" id="dyEndDateTime"><br/>
+<input type="text" id="timePicker">
+
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="js/jquery-ui-timepicker-zh-CN.js"></script>
+<script type="text/javascript">
+    
+    $(function(){
+
+        $('#dyStartDateTime').datetimepicker({
+            showSecond: true,
+            changeMonth: true,
+            changeYear: true,
+            timeFormat: 'hh:mm:ss',//样式可以自定义
+            dateFormat: 'yy/mm/dd'
+        });
+        $('#dyEndDateTime').datetimepicker({
+            showSecond: true,
+            changeMonth: true,
+            changeYear: true,
+            timeFormat: 'hh-mm-ss',
+            dateFormat: 'yy年mm月dd日'
+        });
+
+        $("#timePicker").datetimepicker({
+            /*showOn: "button",
+            buttonImage: "./css/images/icon_calendar.gif",
+            buttonImageOnly: true,*/
+            showSecond: true,
+            timeFormat: 'hh:mm:ss',
+            stepHour: 1,
+            stepMinute: 1,
+            stepSecond: 1
+        });
+
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>Title</title>
+</head>
+<body>
+<form name="form" method="">
+    用户名:<input TYPE=text SIZE=20 maxlength = 8 onkeydown=KeyDown()>
+    密码:<input TYPE=password SIZE=20 maxlength = 8 onkeydown=KeyDown()>
+    <input type="submit" name="btnsubmit" value="提交" />
+</form>
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script>
+    function KeyDown() {
+        if (event.keyCode == 13) {
+            alert(1);
+            event.returnValue = false;
+            event.cancel = true;
+//            form.btnsubmit.click();
+        }
+    }
+</script>
+</body>
+</html>

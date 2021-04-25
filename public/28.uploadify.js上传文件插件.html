@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./uploadify/uploadify.css">
+</head>
+<body>
+
+<input type="file" id="test" multiple>
+
+<input type="file" name="file_upload" id="file_upload">
+<button id="btn">获取文件内容</button>
+
+</body>
+<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="./uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript">
+
+    $(function(){//上传文件插件： 具体参数参考：为知笔记；
+        $("#file_upload").uploadify({
+            /*width         : 120,
+            height        : 30,*/
+            buttonText   : '选择文件',
+            swf           : './uploadify/uploadify.swf',
+            uploader      : './uploadify/uploadify.php'
+        });
+
+        $('#btn').on('click', function(){
+            console.log($("#test").val());
+            console.log($("#file_upload").val());
+        });
+    });
+
+</script>
+</html>

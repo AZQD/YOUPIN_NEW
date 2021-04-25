@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+    <meta charset='utf-8' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <meta name="format-detection"content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstraptc.min.css">
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="css/ppublic.css">
+    <style type="text/css">
+        .loading-aside{
+            width: 1.875rem;
+            height: 1.875rem;
+            margin: 0 auto;
+            border-radius: 0.9375rem;
+            position: relative;
+            animation: loadingAnimate 1s infinite linear;
+            -webkit-animation: loadingAnimate 1s infinite linear;
+            margin-top:12.6875rem;
+        }
+        .loading-ul{
+            position: relative;
+            left: calc(50% - 0.09375rem);
+        }
+        @-webkit-keyframes  loadingAnimate{
+            0%{
+                -webkit-transform: rotate(0deg);
+                -webkit-transform-origin: 50% 50%;
+            }
+            100%{
+                -webkit-transform: rotate(360deg);
+                -webkit-transform-origin: 50% 50%;
+            }
+        }
+        .loading-li{
+            width: 0.1875rem;
+            height: 0.46875rem;
+            background-color: #d8dbdc;
+            position: absolute;
+            -webkit-transform-origin: 0.09375rem 0.9375rem;
+        }
+        .loading-text{
+            text-align: center;
+            color: #c3c6c7;
+            font-size: 0.9375rem;
+            padding-top:1.25rem;
+        }
+    </style>
+</head>
+<body>
+<aside class="loading-aside">
+    <ul class="loading-ul"></ul>
+</aside>
+<p class="loading-text">正在加载</p>
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        for (var i=0;i<12;i++){
+            var $loadingLi = $('<li class="loading-li"></li>');
+            $loadingLi.css('-webkit-transform', "rotate("+30*i+"deg)");
+            $loadingLi.appendTo($('.loading-ul'));
+        }
+        var loadingOpacity = 1;
+        $('.loading-li:lt(7)').css('backgroundColor', '#989a9c').each(function(index){
+            $('.loading-li').eq(index).css('opacity', loadingOpacity-=0.1);
+        });
+    });
+</script>
+</body>
+</html>

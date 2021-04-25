@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>Title</title>
+    <style type="text/css">
+        .box1{
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+        }
+        .box2{
+            width: 100px;
+            height: 100px;
+            background-color: deeppink;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">setCookie</div>
+    <div class="box2">delCookie</div>
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript" src="js/public.js"></script>
+<script type="text/javascript">
+    $(function(){
+        alert(getCookie('happy'));
+        console.log(getCookie('happy'));
+        console.log(getCookie('happy') === '');//如果没有定义cookie，则cookie为空字符串；
+        $('.box1').click(function(){
+            setCookie('happy', 'newYear',1);
+            alert(getCookie('happy'));
+        });
+        $('.box2').click(function(){
+            delCookie('happy');
+            alert(getCookie('happy'));
+        });
+    });
+</script>
+</body>
+</html>

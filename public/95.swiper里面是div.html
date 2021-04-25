@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <meta name="format-detection"content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstraptc.min.css">
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+    <!--<link rel="stylesheet" type="text/css" href="css/ppublic.css">-->
+    <style type="text/css">
+        /*轮播图*/
+        .swiper-container{
+            width: 100%;
+            /*background-color: #bfa;*/
+        }
+        .swiper-container img{
+            width: 100%;
+        }
+        .swiper-container .swiper-pagination{
+            bottom: 0.3125rem;
+        }
+        .swiper-container .swiper-pagination .swiper-pagination-bullet{
+            background: #fff;
+            transform: scale(0.75);
+            -webkit-transform: scale(0.75);
+            opacity: 0.5;
+        }
+        .swiper-container .swiper-pagination .swiper-pagination-bullet-active{
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body>
+<section class="">
+    <!--轮播图-->
+    <aside class="row swiper-container">
+        <div class="swiper-wrapper">
+            <div class="col-xs-12 col-sm-12 swiper-slide"><a href="javascript:void(0);"><img src="http://cdn2.picooc.com/web/res/fatburnSystem/1/1495105876(1).jpg"></a></div>
+            <div class="col-xs-12 col-sm-12 swiper-slide"><a href="javascript:void(0);"><img src="http://cdn2.picooc.com/web/res/fatburnSystem/1/轮播图(6.15).jpg"></a></div>
+            <div class="col-xs-12 col-sm-12 swiper-slide"><a href="javascript:void(0);"><div>hello</div></a></div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </aside>
+</section>
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript" src="js/swiper.min.js"></script>
+<script type="text/javascript" src="js/public.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var mySwiper = new Swiper ('.swiper-container', {
+            direction: 'horizontal',//水平滑动
+            loop: true, //循环播放
+            autoplay: 2000, //自动播放
+            autoplayDisableOnInteraction: false, //用户操作swiper之后，是否禁止autoplay。默认为true：停止。
+            pagination: '.swiper-pagination'  // 分页器
+        });
+    });
+</script>
+</body>
+</html>

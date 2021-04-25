@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="x-dns-prefetch-control" content="on"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <style type="text/css">
+        .box1{
+            width: 200px;
+            height: 200px;
+            background-color: #ff58b9;
+        }
+    </style>
+</head>
+<body>
+<button class="toggle1">toggle1</button>
+<div class="box1"></div>
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+
+        $('.toggle1').unbind('click').click(function(ev){
+            ev.stopPropagation();//阻止冒泡事件一定要加
+            $('.box1').slideToggle();
+        });
+
+        //重点：点击除button之外的任意位置隐藏div
+        $(document).unbind('click').click(function(){
+            $('.box1').slideUp();
+        });
+
+    });
+</script>
+</body>
+</html>

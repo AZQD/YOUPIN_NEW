@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>img</title>
+</head>
+<body>
+<img class="img" src="https://cdn2.picooc.com/web/res/fatburn/image/cardShare/haveStar.png">
+<img class="img" src="https://cdn2.picooc.com/web/res/fatburn/image/cardShare/haveStar.png">
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+
+
+    $(function(){
+        var totalImg = $('img').length;
+        var currentImg = 0;
+        $('img').on('load',function(){
+            currentImg++;
+            alert(totalImg);
+            if(currentImg === totalImg){
+                alert('所有图片加载完毕');
+                //do something
+            }
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <img id="img1" src="image/loding.gif"/>
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+    var img2=new Image();
+    img2.onload=function()
+    {
+        $("body").append(img2);
+        $("#img1").remove();
+    };
+    img2.src="image/5.jpg";
+</script>
+</body>
+</html>

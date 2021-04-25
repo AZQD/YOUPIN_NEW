@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <meta name="format-detection"content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <style>
+        .swiper-container {
+            width: 200px;
+            height: 300px;
+            background-color: #bfa;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination" style="background-color: fuchsia;"></div>
+
+        <!-- 如果需要导航按钮 -->
+        <div class="swiper-button-prev" style="background-color: red;"></div>
+        <div class="swiper-button-next" style="background-color: red;"></div>
+
+        <!-- 如果需要滚动条 -->
+        <div class="swiper-scrollbar" style="background-color: blue;"></div>
+    </div>
+    <!--导航等组件可以放在container之外-->
+
+
+    <script src="js/jquery-1.10.1.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script>
+        $(function(){
+            var mySwiper = new Swiper ('.swiper-container', {
+                //direction: 'vertical',  //垂直滑动
+                direction: 'horizontal',//水平滑动
+                loop: true, //循环播放
+                autoplay: 2000, //自动播放
+                autoplayDisableOnInteraction: false, //用户操作swiper之后，是否禁止autoplay。默认为true：停止。
+
+                // 如果需要分页器
+                pagination: '.swiper-pagination',
+
+                // 如果需要前进后退按钮
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+
+                // 如果需要滚动条
+                scrollbar: '.swiper-scrollbar',
+                slidesPerView : 2,
+                paginationClickable: true,
+                slidesPerGroup : 2,
+
+
+                initialSlide:2,//初始化显示第几个swiper-slide
+
+                //spaceBetween:30 //swiper-slide之间的间隙
+                onSlideChangeStart: function(swiper){
+                    alert(swiper.activeIndex); //切换结束时，告诉我现在是第几个slide
+                }
+
+
+
+
+
+
+            });
+
+
+
+            /*
+             * mySwiper.slideTo(index, speed, runCallbacks)
+             Swiper切换到指定slide。
+             index:必选，num，指定将要切换到的slide的索引。
+             speed:可选，num(单位ms)，切换速度
+             runCallbacks:可选，boolean，设置为false时不会触发onSlideChange回调函数。
+
+             mySwiper.lockSwipes()
+             锁定Swiper，阻止其滑动。可以使用 mySwiper.unlockSwipes() 解锁。
+
+             //mySwiper.detachEvents();//禁止滑动
+             * */
+        });
+    </script>
+</body>
+</html>

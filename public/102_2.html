@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <style>
+        #box {float:left;width:200px;height:18px;border:1px solid;}
+        #bar {float:left;width:0px;height:18px;border:0px;background:green;}
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="bar"></div>
+</div>
+<script language="javascript">
+    var total = 100; //总数
+    var curN = 50; //当前值
+    function show()
+    {
+        var o = document.getElementById("bar");
+        o.style.width = ((curN / total) * 200) + 'px'; //200是外框的宽度
+    }
+    show();
+</script>
+</body>
+</html>

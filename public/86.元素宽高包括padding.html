@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .wrap{
+            width: 200px;
+            height: 200px;
+            padding: 100px;
+            background-color: fuchsia;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+            padding-top:50px;
+            border: 2px solid blue;
+            margin-top:10px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="box"></div>
+</div>
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+//    JQUERY 获取 DIV 宽度与高度（width,padding,margin,border）全都有了！
+
+    var result1 = $(' .box').height();//只是获取content宽度
+    var result2 = $('.box').innerHeight();//获取content+padding的宽度
+    var result3 = $('.box').outerHeight();//获取content+padding+border的宽度
+    var result4 = $('.box').outerHeight(true);//获取content+padding+border+margin的宽度
+
+    var result5 = $('.box').offset().left;//元素距离屏幕左侧距离
+    var result6 = $('.box').offset().top;//元素距离屏幕顶部距离
+
+
+    console.log(result1);
+    console.log(result2);
+    console.log(result3);
+    console.log(result4);
+    console.log(result5);
+    console.log(result6);
+</script>
+</body>
+</html>

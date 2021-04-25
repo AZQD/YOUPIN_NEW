@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="test">
+    <li>11</li>
+    <li>12</li>
+    <li>13</li>
+    <li style="display: none;">14</li>
+    <li>15</li>
+</ul>
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+    $('#test li').click(function(){
+        alert($(this).index()); // 有li隐藏同样可以获取不同li的下标；
+    });
+</script>
+</body>
+</html>

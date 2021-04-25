@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+  <link href="image/icon.png" rel="shortcut icon" type="image/x-icon"/>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ta67M7R4GGToWMiWGfG5PajOXzQMwBik"></script>
+  <title>百度地图控件</title>
+  <style type="text/css">
+    #mapBox {
+      width: 100%;
+      height: 360px;
+    }
+  </style>
+</head>
+<body>
+<div id="mapBox"></div>
+<script type="text/javascript">
+    //官方文档：
+    //http://lbsyun.baidu.com/index.php?title=jspopular
+    //http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html
+    //朱岗村point:{lng: 114.29626, lat: 34.473097}
+
+    //创建地图基础的三步
+    var map = new BMap.Map('mapBox');// 创建地图实例
+    window.map = map;//将map变量存储在全局
+    var point = new BMap.Point(116.404, 39.915);// 创建点坐标
+    map.centerAndZoom(point, 15);// 初始化地图，设置中心点坐标和地图级别
+
+
+    //相关事件
+    map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+    map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+    map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+    map.enableKeyboard();//启用键盘上下左右键移动地图
+
+
+    //添加红色标记
+    var marker = new BMap.Marker(point);//表示地图上一个图像标注
+    map.addOverlay(marker);//全景场景内添加覆盖物
+
+    //对红色标记位置添加自定义的说明
+    var sContent = '<div>这里是祖国的首都哟</div>'
+    var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+    marker.openInfoWindow(infoWindow);
+    marker.addEventListener("click", function () {
+        this.openInfoWindow(infoWindow);
+    });
+
+
+    var mapType1 = new BMap.MapTypeControl({mapTypes: [BMAP_NORMAL_MAP, BMAP_HYBRID_MAP]});
+    var mapType2 = new BMap.MapTypeControl({anchor: BMAP_ANCHOR_TOP_LEFT});
+    var overView = new BMap.OverviewMapControl();
+    var overViewOpen = new BMap.OverviewMapControl({isOpen: true, anchor: BMAP_ANCHOR_BOTTOM_RIGHT});
+    //添加地图类型和缩略图
+    add_control();
+
+    function add_control() {
+        map.addControl(mapType1);          //2D图，卫星图（右上角：地图/混合）
+        map.addControl(mapType2);          //默认地图控件（左上角：地图/卫星/三维）
+        map.setCurrentCity("北京");        //由于有3D图，需要设置城市哦
+        map.addControl(overView);          //添加默认缩略地图控件
+        map.addControl(overViewOpen);      //右下角，打开
+    }
+
+
+    //左上角和右上角比例尺、缩放控件
+    var top_left_control = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});// 左上角，比例尺
+    var top_left_navigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
+    var top_right_navigation = new BMap.NavigationControl({
+        anchor: BMAP_ANCHOR_TOP_RIGHT,
+        type: BMAP_NAVIGATION_CONTROL_SMALL
+    }); //右上角，仅包含平移和缩放按钮
+    /*缩放控件type有四种类型:
+     BMAP_NAVIGATION_CONTROL_SMALL：仅包含平移和缩放按钮；BMAP_NAVIGATION_CONTROL_PAN:仅包含平移按钮；BMAP_NAVIGATION_CONTROL_ZOOM：仅包含缩放按钮*/
+
+    //添加控件和比例尺
+    add_contro3();
+
+    function add_contro3() {
+        map.addControl(top_left_control);
+        map.addControl(top_left_navigation);
+        map.addControl(top_right_navigation);
+    }
+
+    //移除控件和比例尺
+    function delete_control() {
+        map.removeControl(top_left_control);
+        map.removeControl(top_left_navigation);
+        map.removeControl(top_right_navigation);
+    }
+
+</script>
+</body>
+</html>

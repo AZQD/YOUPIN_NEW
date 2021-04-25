@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var timeBegin = '2017.7.25';
+        var timeEnd = '2017.7.28';
+//        var timestamp=new Date().getTime();//获取时间戳
+
+        console.log(getDiffDay(timeBegin, timeEnd));
+        function getDiffDay(timeBegin, timeEnd){
+            var timeDiff = new Date(timeEnd).getTime() - new Date(timeBegin).getTime();
+            return timeDiff/(1000*24*3600);
+        }
+    });
+</script>
+</body>
+</html>

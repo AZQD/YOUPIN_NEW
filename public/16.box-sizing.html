@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #test{
+            list-style: none;
+        }
+        li{
+            float: left;
+            width: 33.3333333%;
+            height:3em;
+            background-color: pink;
+            /*border: 5px solid blue;*/
+            /*padding: 0 20px;*/
+            box-sizing: border-box;/*此处用到*/
+            /*
+            定义和用法：
+            box-sizing 属性允许您以特定的方式定义匹配某个区域的特定元素。
+            例如，假如您需要并排放置两个带边框的框，可通过将 box-sizing
+            设置为 "border-box"。这可令浏览器呈现出带有指定宽度和高度的框，并把边框和内边距放入框中。*/
+        }
+        li:nth-child(2n+1){
+            background-color: deeppink;
+        }
+    </style>
+</head>
+<body>
+<ul id="test">
+    <li>01</li>
+    <li>02</li>
+    <li>03</li>
+    <li>04</li>
+    <li>05</li>
+    <li>06</li>
+</ul>
+</body>
+</html>

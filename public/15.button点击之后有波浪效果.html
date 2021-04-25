@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/rippler.css">
+</head>
+<body>
+    <a class="btn btn-default rippler rippler-inverse" href="#">rippler-inverse</a>
+    <button class="btn btn-primary rippler rippler-default">rippler-default</button>
+    <a class="btn btn-success rippler rippler-inverse" href="#">rippler-inverse</a>
+    <a class="btn btn-info rippler rippler-default" href="#">rippler-default</a>
+    <a class="btn btn-warning btn-lg rippler rippler-inverse" href="#">rippler-inverse</a>
+    <a class="btn btn-danger btn-lg rippler rippler-default" href="#">rippler-default</a>
+    <a class="btn btn-danger btn-lg rippler rippler-default" href="#">rippler-default</a>
+    <div class="box rippler rippler-inverse" style="width: 100px; height: 100px; background-color: deeppink; margin-top: 20px;"></div>
+    <div class="box rippler rippler-default" style="width: 100px; height: 100px; background-color: deeppink; margin-top: 20px;"></div>
+    <div class="box rippler rippler-bs-danger" style="width: 100px; height: 100px; background-color: deeppink; margin-top: 20px;"></div>
+    <div class="box rippler rippler-bs-default" style="width: 100px; height: 100px; background-color: deeppink; margin-top: 20px;"></div>
+    <div  class="rippler rippler-default"><img src="image/1.jpg" alt=""></div>
+    <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="js/rippler.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $(".rippler").rippler({
+                // addElement:"svg"
+            });
+
+            $('a[href^=#]').on('click', function(){
+                return false;
+            });
+
+        });
+
+    </script>
+</body>
+</html>

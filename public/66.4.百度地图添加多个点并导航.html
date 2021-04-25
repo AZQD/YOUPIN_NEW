@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <link href="image/icon.png" rel="shortcut icon" type="image/x-icon"/>
+    <script type="text/javascript" src="js/jquery-1.10.1.js"></script>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=uhQwm3PFFY2P7hgFfU8hke6aUW3f9EHf"></script>
+    <title>百度地图添加多个点并导航</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            border: none;
+            outline: none;
+        }
+
+        #mapBox {
+            width: 100%;
+            height: 100vh;
+        }
+
+        #ctrlBox {
+            width: 100%;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            z-index: 999;
+            background-color: #fff;
+            font-size: 14px;
+        }
+
+        #ctrlBox .inner {
+            padding: 10px 20px;
+        }
+
+        #ctrlBox #gotoBtn {
+            color: #fff;
+            padding: 12px 0;
+            text-align: center;
+            background-color: #38f;
+        }
+
+        #toggleBox {
+            position: fixed;
+            left: 10px;
+            top: 10px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+        }
+
+        #toggleBox #select {
+            height: 100%;
+            width: 80px;
+            background-color: #fff;
+        }
+
+        #searchWuLiu {
+            width: 80px;
+            height: 100%;
+            text-indent: 6px;
+            margin-left: 4px;
+        }
+
+        #searchBtn {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            height: 100%;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+<div id="mapBox"></div>
+<div id="ctrlBox" style="display: none;">
+    <div id="gotoBtn">去这里</div>
+</div>
+<div id="toggleBox">
+    <select name="" id="select">
+        <option value="0">全部</option>
+        <option value="1">待配送</option>
+        <option value="2">待取件</option>
+    </select>
+    <input type="text" id="searchWuLiu" placeholder="物流码"><span id="searchBtn">搜索</span>
+</div>
+<!--
+1.百度地图拾取坐标：http://api.map.baidu.com/lbsapi/getpoint/index.html
+-->
+<script type="text/javascript">
+  var minePoint = {};
+  var pointArr = [
+    /*{
+      address: "科学大道100号郑州大学新校区厚德大道附近",
+      lat: "34.821071",
+      lng: "113.538729",
+      order_sn: "2018112900060",
+      specific_address: "郑州大学新校区荷园旁荷园13号楼404",
+      status: "0",
+      user_address: "河南省,郑州市,中原区,须水街道",
+      user_id: "569"
+    },
+    {
+      address: "中原西路街道郑州市中原中路113号院2号楼",
+      lat: "34.755217",
+      lng: "113.602078",
+      order_sn: "2018112800004",
+      specific_address: "郑州市中原区向阳小学旁113号院8号楼1单元",
+      status: "6",
+      user_address: "河南省,郑州市,中原区,中原西路街道",
+      user_id: "2147"
+    }*/
+  ];
+  var type = 0; //0:默认返回所有；1：待派送；2：待取件
+  var code = ''; //物流码
+  $('#select').unbind('change').bind('change', function () {
+    console.log($("#select").find("option:selected").val());
+    type = $("#select").find("option:selected").val();
+    getListInfo(type, code);
+  });
+
+  $('#searchBtn').unbind('click').bind('click', function () {
+    code = $('#searchWuLiu').val();
+    getListInfo(type, code);
+  });
+
+  getListInfo(0); //初始化
+  function getListInfo(type, code) {
+    $('#ctrlBox').hide();
+    $.ajax({
+      url: 'https://www.xihuo.ink/wechat/common/getNavigatePoint?type=' + type + (code ? ('&code=' + code) : ''),
+      type: 'get',
+      success: function (res) {
+        console.log(666, res);
+        pointArr = res.data;
+
+        //创建地图基础的三步
+        var map = new BMap.Map('mapBox');// 创建地图实例
+        window.map = map;//将map变量存储在全局
+        var point = new BMap.Point(113.666486, 34.752965);// 创建点坐标
+        map.centerAndZoom(point, 12);// 初始化地图，设置中心点坐标和地图级别
+
+
+        //相关事件
+        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+        map.enableKeyboard();//启用键盘上下左右键移动地图
+
+
+        //添加红色标记
+        for (let i = 0; i < pointArr.length; i++) {
+          var itemPoint = new BMap.Point(pointArr[i].lng, pointArr[i].lat);
+          var myIcon = new BMap.Icon("http://api.map.baidu.com/img/markers.png", new BMap.Size(23, 25), {
+            offset: new BMap.Size(10, 25), // 指定定位位置
+            imageOffset: new BMap.Size(0, 0 - 10 * 25) // 设置图片偏移
+          });
+          var marker;
+          if (pointArr[i].status == 6) {
+            marker = new BMap.Marker(itemPoint, {icon: myIcon});
+          } else {
+            marker = new BMap.Marker(itemPoint);//表示地图上一个图像标注
+          }
+          map.addOverlay(marker);//全景场景内添加覆盖物
+          //对红色标记位置添加自定义的说明
+          addClickHandler(pointArr[i], marker, i);
+        }
+
+        function addClickHandler(itemPoint, marker, i) {
+          marker.addEventListener("click", function (e) {
+              openInfo(itemPoint, e, i);
+
+              $('#ctrlBox').show();
+              $('#gotoBtn').unbind('click').bind('click', function () {
+                console.log('我的位置: ', minePoint);
+                console.log(itemPoint);
+                window.location.href = 'http://api.map.baidu.com/direction?origin=latlng:' + minePoint.lat + ',' + minePoint.lng + '|name:我的位置&destination=latlng:' + itemPoint.lat + ',' + itemPoint.lng + '|name:' + itemPoint.address + '&mode=transit&region=郑州&output=html&src=webapp.baidu.openAPIdemo';
+              });
+
+            }
+          );
+        }
+
+        function openInfo(itemPoint, e, i) {
+          var p = e.target;
+          var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
+          var infoWindow = new BMap.InfoWindow('编号：' + (i + 1) + '</br>地址：' + itemPoint.address + '</br>订单号：' + itemPoint.order_sn + '</br>物流码：' + itemPoint.shipping_code_1);  // 创建信息窗口对象
+          map.openInfoWindow(infoWindow, point); //开启信息窗口
+        }
+
+
+        //获取当前所在位置
+        var geolocation = new BMap.Geolocation();//定位
+        geolocation.getCurrentPosition(function (res) {
+          if (this.getStatus() === BMAP_STATUS_SUCCESS) {
+            console.log("获取当前所在位置：", res);
+            minePoint = res.point;
+          } else {
+            alert('未获取到当前定位');
+          }
+        });
+
+
+        //缩放控件
+        var top_right_navigation = new BMap.NavigationControl({
+          anchor: BMAP_ANCHOR_TOP_RIGHT,
+          type: BMAP_NAVIGATION_CONTROL_SMALL
+        });  //左上角，添加默认缩放平移控件
+        map.addControl(top_right_navigation);
+
+      }
+    });
+  }
+
+</script>
+</body>
+</html>

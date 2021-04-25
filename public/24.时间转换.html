@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <span id="bgclock"></span><br>
+    <div class="box">
+        <span id="hour"></span>
+        <span id="minute"></span>
+        <span id="second"></span>
+
+        <hr>
+        <span id="test"></span>
+    </div>
+    <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+
+        getTime();
+        function getTime(){
+            var endTime=new Date("2016-11-14 10:00:00");
+            var nowTime=new Date('2016-11-14 12:00:00');
+            var diff=nowTime - endTime;
+            setInterval(function(){
+                diff = diff-1000;
+                var hour=Math.floor(diff/1000/60/60%24);
+                var minutes=Math.floor(diff/1000/60%60);
+                var seconds=Math.floor(diff/1000%60);
+                hour = (hour<10?'0':'') + hour;
+                minutes = (minutes<10?'0':'') + minutes;
+                seconds = (seconds<10?'0':'') + seconds;
+                document.getElementById("hour").innerHTML=hour+"小时";
+                document.getElementById("minute").innerHTML=minutes+"分钟";
+                document.getElementById("second").innerHTML=seconds+"秒";
+            }, 1000);
+        }
+        
+        var jsonObj = {
+            "picture": "[{\"url\":\"http://cdn2.picooc.com/web/res/fatburn/image/figureContrast/banner1.png\"},{\"url\":\"http://cdn2.picooc.com/web/res/fatburn/image/figureContrast/banner1.png\"},{\"url\":\"http://cdn2.picooc.com/web/res/fatburn/image/figureContrast/banner1.png\"},{\"url\":\"http://cdn2.picooc.com/web/res/fatburn/image/figureContrast/banner1.png\"}]"
+        };
+        console.log(jsonObj);
+        var result = JSON.stringify(jsonObj);
+        console.log(result);
+
+
+
+        timeDiffer("2016-11-14 10:00:00", "2016-11-14 10:00:05");
+        function timeDiffer(nowTime, endTime) {
+            var intDiff = new Date(endTime) - new Date(nowTime);
+            intDiff = parseInt(intDiff/1000);//倒计时总秒数量
+            window.setInterval(function(){
+                if (intDiff >= 0) {
+                    var day = Math.floor(intDiff / (60 * 60 * 24));
+                    var hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+                    var minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+                    var second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+                    hour = (hour<10?'0':'') + hour;
+                    minute = (minute<10?'0':'') + minute;
+                    second = (second<10?'0':'') + second;
+                    // $('#day_show').html(day + "天");
+                    // $('#hour_show').html('<s id="h"></s>' + hour + '时');
+                    $('#test').html(hour+'**'+minute+'**'+second);
+//                $('#second').html(second);
+                    intDiff--;
+                }
+            }, 1000);
+        }
+
+
+        /*function timeDiffer(nowTime, endTime){
+         var diff = new Date(endTime) - new Date(nowTime);
+         var hour, minutes, seconds;
+         setInterval(function(){
+         diff = diff-1000;hour=Math.floor(diff/1000/60/60%24);
+         minutes=Math.floor(diff/1000/60%60);
+         seconds=Math.floor(diff/1000%60);
+         hour = (hour<10?'0':'') + hour;
+         minutes = (minutes<10?'0':'') + minutes;
+         seconds = (seconds<10?'0':'') + seconds;
+         console.log(hour, minutes, seconds);
+         }, 1000);
+         }*/
+
+        function timeDiffer2(nowTime, endTime){
+            return new Date(endTime) - new Date(nowTime);
+        }
+
+        var aaa = timeDiffer2("2016-11-14 10:00:00", "2016-11-14 10:00:06");
+        console.log(aaa);
+        console.log(new Date()); //Wed Nov 16 2016 13:41:18 GMT+0800 (中国标准时间)
+        console.log(new Date().getTime()); //1479274878059
+
+
+        /*var urlNotSale = ajaxLink + '/v1/api/campGoods/getAppointment' + window.location.search+'&id='+data.resp.id+'&type=0';
+        $.ajax({
+            type: "get",
+            url: urlNotSale,
+            success: function(data){
+                console.log(data);
+                if(data == false){
+                    $('.sale .state').hide().eq(0).show(); ////开售提醒：预约下期
+                }else{
+                    $('.sale .state').hide().eq(1).show(); ////开售提醒：已预约
+                }
+            }
+        });*/
+        console.log(window.location.href);
+
+        if(5>3){
+            console.log(22);
+        }
+        if(5>3 && 3>2){
+            console.log(11);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

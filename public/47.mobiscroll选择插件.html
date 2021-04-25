@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="css/mobiscroll.custom-3.0.0-beta4.css">
+</head>
+<body>
+<input type="text" id="date1" placeholder="mm-dd"><hr/>
+<input type="text" id="date2" placeholder="yyyy-mm-dd"><hr/>
+<input type="text" id="date3" placeholder="时分"><hr/>
+<ul id="weightTime" style="display:none;">
+    <li data-val="上午时段 (04:00-12:00)">
+        <p>上午时段 (04:00-12:00)</p>
+    </li>
+    <li data-val="下午时段 (12:00-16:00)">
+        <p>下午时段 (12:00-16:00)</p>
+    </li>
+    <li data-val="傍晚时段 (16:00-20:00)">
+        <p>傍晚时段 (16:00-20:00)</p>
+    </li>
+    <li data-val="夜晚时段 (20:00-24:00)">
+        <p>夜晚时段 (20:00-24:00)</p>
+    </li>
+</ul><hr/>
+<ul id="height" style="display:none">
+    <li data-val="175">
+        <p>175</p>
+    </li>
+    <li data-val="176">
+        <p>176</p>
+    </li>
+</ul>
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript" src="js/mobiscroll.custom-3.0.0-beta4.js"></script>
+<!--<script type="text/javascript" src="js/mobiscroll.2.13.2.js"></script>-->
+<script type="text/javascript">
+    $(function(){
+        $('#date1').mobiscroll().date({
+            theme: 'android-holo-light',
+            lang: 'zh',
+            display: 'bottom',
+            closeOnOverlayTap:true,  //true的时候点击遮罩消失控件
+            cancelText:"取消",
+            setText:"确定",
+            headerText:'请选择时间',
+            dateWheels: 'mm  dd',
+            dateFormat: 'mm-dd', //面板中日期排列格式
+            defaultValue: '12月12日',
+            monthText: '月',
+            dayText: '日',
+            onBeforeShow: function (event, inst) {
+//                leftControl(true); 显示之前执行的函数；
+
+            },
+            onClose: function (event, inst) {
+//                leftControl(false);显示之后执行的函数；
+            }
+            /*max: new Date()*/
+            /*min: new Date(new Date().setFullYear(currYear - 80)),*/
+        });
+
+        $("#date2").mobiscroll().date({//这里是date，还有time，datetime不在本文范围。
+            theme: 'android-holo-light',//样式，可根据操作系统不同设置不一样的样式  mobiscroll
+            lang: "zh",
+            display: 'bottom',//显示位置
+            cancelText: "取消",
+            setText:"确定",
+            dateFormat: 'yyyy-mm-dd',//输入框最终显示的格式；
+            startInput: '#startDate',
+            endYear: 2020,//可根据当前年份设置
+            dayText: '日', monthText: '', yearText: "年 ",//年月显示有bug，年后面加一个空格，月不用写；
+            headerText: function(valueText) {
+                var array = valueText.split('-');
+                return array[0] + "年" + array[1] + "月" + array[2] + "日";
+            },
+            onBeforeShow:function(inst){//显示之前执行的函数；
+                //alert('open');
+            },
+            onClose: function (event, inst){ //显示之后执行的函数；
+                //console.log(event,inst);
+                //alert('close');
+            }
+        });
+        $("#date3").mobiscroll().time({//这里是date，还有time，datetime不在本文范围。
+            theme: 'android-holo-light',//样式，可根据操作系统不同设置不一样的样式  mobiscroll
+            lang: "zh",
+            display: 'bottom',//显示位置
+            cancelText: "取消",
+            setText:"确定",
+            dateFormat: 'hh:ii A',//输入框最终显示的格式；
+            headerText: '选择时分',
+            onBeforeShow:function(inst){//显示之前执行的函数；
+                //alert('open');
+            },
+            onClose: function (event, inst){ //显示之后执行的函数；
+                console.log(event,inst);
+                //alert('close');
+            }
+        });
+
+        //测量时段选择
+        $('#weightTime').mobiscroll().image({
+            theme: 'android-holo-light',
+            lang: 'zh',
+            display: 'bottom',
+            closeOnOverlayTap:false,  //true的时候点击遮罩消失控件
+            cancelText:"取消",
+            setText:"确定",
+            placeholder: '选择时间段',
+            labels: [''],
+            headerText:'选择测量时段',
+            enhance: true,
+            defaultValue: [Math.floor($('#weightTime li').length/2)],
+            onBeforeShow: function (event, inst) {
+                console.log(event,inst);
+            },
+            onClose: function (event, inst) {
+
+            }
+        });
+
+        $('#height').mobiscroll().image({
+            theme: 'android-holo-light',
+            lang: 'zh',
+            display: 'bottom',
+            closeOnOverlayTap:false,  //true的时候点击遮罩消失控件
+            cancelText: "取消",
+            setText:"确定",
+//            circular:false,
+            placeholder: '选择身高',
+            labels: [''],
+            headerText:'身高',
+            enhance: true,
+            defaultValue: ['abcd'],
+            onBeforeShow: function (event, inst) {
+                //leftControl(true);
+            },
+            onClose: function (event, inst) {
+                //leftControl(false);
+            }
+        });
+    });
+</script>
+</body>
+</html>

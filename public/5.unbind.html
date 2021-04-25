@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .box1{
+            width: 200px;
+            height: 200px;
+            background-color: #bfa;
+        }
+        .box2{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="box1">
+    <div class="box2"></div>
+</div>
+<script src="js/jquery-3.0.0.min.js"></script>
+<script>
+    $(function(){
+        $('.box2').click( function(){
+            console.log('d');
+        });
+        $('.box1').on('click', function(){
+            console.log('div1');
+        });
+        //对元素绑定事件之前，先取消之前的绑定事件：
+        $('.box2').unbind('click').click( function(){
+            console.log('div2');
+        });
+    });
+</script>
+</body>
+</html>

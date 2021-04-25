@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 640px;
+        }
+    </style>
+</head>
+<body>
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery.lazyload.min.js"></script>
+<script>
+    $(function() {
+        /*$("img.lazy").lazyload({
+            threshold : 100,
+            event : "mouseover"
+        });*/
+        //alert($('body').height());//总高度，包括看不到的高度
+        //alert($(window).height());//可以理解为可视区域的高度
+
+        $(window).scroll(function(){
+            //zanNum();
+            $(".list-img").each(function(index, element) {
+                var me=$(this);
+                imgsrc(me);
+            });
+            if($("#lst").height()-$(window).height()-$(window).scrollTop()<50){
+                if(pageBtn){
+                    getInfo();
+                    console.log(1);
+                    pageBtn=false;
+                }
+            }
+        })
+    });
+
+
+
+    function imgsrc(me){
+        var ypsrc = me.attr('ypsrc');
+        var src = me.attr('src');
+        //var scrollTop = $(window).scrollTop();
+        var scrollTop = $(window).scrollTop();
+        var wHeight = $(window).height() ;
+        var extPxOffset=1500;
+        var ele_top = scrollTop - me.offset().top + wHeight;
+        var ele_bottom =  (me.offset().top + me.height()) - scrollTop ;
+        var btnview=(ele_top > 0 - extPxOffset && ele_top < wHeight + extPxOffset) || (ele_bottom > 0 - extPxOffset && ele_bottom < wHeight + extPxOffset) ;
+        if (  ypsrc && btnview) {
+            if(me.attr('ypsrc')!='ok'){
+                me.attr('src', ypsrc);
+                me.attr('ypsrc', 'ok');
+            }
+        }
+    }
+
+
+    function getCollectionList(){
+        var wdt;
+        var leftImgWidth;
+        var rightImgWidth;
+
+
+
+        var host=window.location.protocol+"//"+window.location.host;
+        var finalUrl=host+"/collectList"+window.location.search+'&page='+page+'&pageNum='+pageNum;
+        if(pageBtn){
+            $.ajax({
+                type: "get",
+                url: finalUrl,
+                success : function (data) {
+                    var collectData = data.collectData;
+                    var str = '';
+                    for(var i=0; i<collectData.length; i++){
+                        str += '<li class="list"><a href="'+collectData[i].url+window.location.search+'"><div class="left"><img src="image/storage/choose.png" />' +
+                                '</div><div class="middle"><div class="middleImg"><img class="shareIcon" src="'+collectData[i].shareIcon+'"/></div><div class="middleDis">' +
+                                '<h3>'+collectData[i].title+'</h3><p>'+collectData[i].desc+'</p></div></div><div class="right" sid='+collectData[i].sid+'><img src="image/storage/delete.png" /></div></a></li>';
+                    }
+                    $('#scroll').append(str);
+                    wdt = $(window).width();
+                    leftImgWidth = $('.list .left').width();
+                    rightImgWidth = $('.list .right').width();
+                    $('.middle').css("width",wdt);
+                    //js控制ul的宽度
+                    $('#scroll').css("width",wdt + leftImgWidth + rightImgWidth);
+
+                    $('.list .left').on('click', function(){
+                        $(this).parents().animate({
+                            left : '-10.0625rem'
+                        }, 100, 'linear');
+                    });
+                    //点击右侧删除图标
+                    $('.list .right').unbind("click").click(function(){
+                        var host=window.location.protocol+"//"+window.location.host;
+                        var me=$(this);
+                        $.ajax({
+                            type: "get",
+                            url: host+"/collect"+window.location.search+"&sid="+$(this).attr("sid")+"&collectAct=0",
+                            success : function (data) {
+                                //alert($(this)+"|"+$(this).parent().parent());
+                                me.parent().parent().remove();
+                            }
+                        })
+
+                    });
+
+                    if(page<data.totalPage){
+                        page++;
+                    }
+                    else{
+                        pageBtn=false;
+                    }
+                }
+            })
+        }
+    }
+
+
+console.log(2*3>5);
+</script>
+</body>
+</html>

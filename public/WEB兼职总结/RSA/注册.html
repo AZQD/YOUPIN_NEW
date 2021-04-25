@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript RSA Encryption</title>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script src="js/jsencrypt.min.js"></script>
+    <!--<script type="text/javascript" src="js/base64.js"></script>-->
+
+
+
+
+    <script type="text/javascript">
+        /*base64加密和rsa加密必须两个都要用吗*/
+        $(function(){
+//            var str = "AUTH";
+//            var b = new Base64();
+//            var str = b.encode("AUTH");
+//            console.log(str);
+            str = 'QVVUSA==';
+            // 参考链接：https://www.oschina.net/code/snippet_1263909_48994
+            var publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC5jmTSO5V9ILlphRYdfFk4M2Rko/Ur22h43SxkFcGcj9Vkuew5P65XJPQtJesvY37UmU7zXWsqT/i4Evo2gaYu9Eu/fgutkP9KE4yKh4Ruk/pYC+hyNFVIK21kl4o8cfV9cKumydj2WXgmuywX8UQiVIfbKuvEAw+RVvPjBt9UqQIDAQAB";
+            var encrypt = new JSEncrypt();
+            encrypt.setPublicKey(publicKey);
+
+
+            console.log(encrypt.encrypt("1497091791"));
+            var authKey = encrypt.encrypt("user=YWJj&pass=Y2hhb2ppZQ==&nickname=Y2hhb2ppZQ==");
+            // 加密
+            console.log(authKey);
+            var timestamp=new Date().getTime();//获取时间戳
+            console.log(timestamp);
+            var link = "http://www.kalichimall.com/apigateway/login?auth="+authKey+"&timestamp="+timestamp;
+            console.log(link);
+            $('#btn').click(function(){
+                var userInfo = {
+//                    "auth":authKey,
+                    "reg":authKey,
+                    "timestamp":timestamp
+                };
+                console.log(userInfo);
+                $.ajax({
+                    type:"POST",
+                    //url:"http://www.kalichimall.com/apigateway/login",
+                    url:"http://www.kalichimall.com/apigateway/reg",
+                    dataType:"json",
+//                    contentType: 'application/json',
+                    data:JSON.stringify(userInfo),
+                    success:function(data){
+                        console.log(data);
+                    },
+                    error:function(error){
+                        console.log(error);
+                    }
+                });
+            });        
+        });
+    </script>
+</head>
+<body>
+<button id="btn">btn</button>
+</body>
+</html>

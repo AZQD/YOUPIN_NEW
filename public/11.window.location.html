@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{background-color: #bfa;}
+    </style>
+</head>
+<body>
+<img src="http://cdn2.picooc.com/web/res/fatburn/image/student/time.png" alt="">
+    <div id="box">hello</div>
+    <button id="btn">click事件</button>
+<script src="js/jquery-1.10.1.js"></script>
+<script>
+
+    $(function(){
+        $('#btn').unbind('hover').hover(function(){
+            $('#box').css('color','red');
+        },function(){
+            $('#box').css('color','blue');
+        });
+    });
+
+    //参考网址：http://localhost:63342/YOUPIN/public/11.window.location.html?name=liming&age=12
+
+    console.log(window.location.protocol);//             http:
+    console.log(window.location.host); //                localhost:63342
+    console.log(window.location.pathname); //            /YOUPIN/public/11.window.location.html
+    console.log(window.location.search); //               ?name=liming&age=12
+    console.log(window.location.search.substring(1)); //  name=liming&age=12
+    var arrHeadImg1=['\'http://cdn2.picooc.com/web/res/appFriend/head_portrait_pic02.png\'','\'http://cdn2.picooc.com/web/res/appFriend/head_portrait_pic01.png\''];
+    var arrHeadImg2=['http://cdn2.picooc.com/web/res/appFriend/head_portrait_pic02.png','\'http://cdn2.picooc.com/web/res/appFriend/head_portrait_pic01.png\''];
+    console.log(arrHeadImg1[0],arrHeadImg1[1]);
+    console.log(arrHeadImg2[0]);
+    console.info(window.location.search.substr(1));  //  name=liming&age=12
+    //window.location.href = 'https:www.baidu.com'; //跳转到百度
+
+    //获取对应的参数值
+    console.log(getParamByUrl('age'));  //  12
+    function getParamByUrl(paramKey){
+        var url=window.location.search.substring(1);
+        var arr=url.split("&");
+        var result=[];
+        for(var i=0;i < arr.length;i++){
+            var param=arr[i].split("=");
+            if(paramKey == param[0]){
+                return  param[1];
+            }
+        }
+        return "false";
+    }
+
+    //移除对应的参数值
+    console.log(removeParamByUrl('age')); //  ?&name=liming
+    function removeParamByUrl(paramKey){
+        var url=window.location.search.substring(1);
+        var arr=url.split("&");
+        var result=[];
+        var str='?';
+        for(var i=0;i < arr.length;i++){
+            var param=arr[i].split("=");
+            if(paramKey != param[0]){
+                str+='&'+param[0]+'='+param[1];
+                //return  param[1];
+            }
+        }
+        return str;
+    }
+
+    //eval函数解析字符串
+    var str = 12;
+    strToJson(str);
+    function strToJson(str){
+        if(typeof(str)=='string'){
+            var json = eval('(' + str + ')');
+        }
+        else{
+            var json = str;
+        }
+        return json;
+    }
+</script>
+</body>
+</html>

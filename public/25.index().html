@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <ul id="test">
+        <li>11</li>
+        <li>22</li>
+        <li>33</li>
+    </ul>
+<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+<script type="text/javascript">
+    var aa = $('li').click(function(){
+        console.log($(this).index());
+    });
+</script>
+</body>
+</html>

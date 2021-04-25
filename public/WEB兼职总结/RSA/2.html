@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#">
+    <input type="password">
+</form>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jsencrypt.js"></script>
+<script type="text/javascript">
+    var keys;
+
+    $(function(){
+        var hasPass = $('input:password');
+        var token = $('#csrfToken').val();
+
+        getKeys();
+
+        $(hasPass).each(function(index){
+            var currentItem = $(this);
+            $(currentItem).focus(function(){
+                $(currentItem).val("");
+            });
+            $(currentItem).blur(function(){
+                var cVal = $(currentItem).val();
+                if($.trim(cVal) != "" && "undefined" != keys && null != keys){
+                    $.jCryption.encrypt($(currentItem).val(), keys, function(encryptedPasswd) {
+                        $(currentItem).val(encryptedPasswd);
+                    });
+                }
+            });
+        });
+    });
+
+    function getKeys() {
+        $.jCryption.getKeys(URL,function(receivedKeys) {
+            keys = receivedKeys;
+        });
+
+    }
+    function submitForm(form){
+        var flag = true;
+        //check password is encrypt or not  
+        var Cpass;
+        $(form).find("input:password").each(function(index){
+            var currPass = $(this);
+            var value = $.trim($(currPass).val());
+            var reg = /^[A-Za-z0-9]{128}$/;
+            if(value == ""){
+                flag = false;
+                Cpass = $(currPass);
+            }else if(!reg.test(value)){
+                //the reason maybe previous request gain public key failed  
+                //so please check - public key via ajax request.-(getKey(val))  
+                //alert("key-->"+keys);  
+                alert("encrypt failed.");
+                flag = false;
+            }
+        });
+        if(flag == true){
+            form.submit();
+        }else{
+            if(undefined != Cpass && null != Cpass && $(Cpass).val() == ""){
+                alert("Please key in your password.");
+                $(Cpass).focus();
+            }else{//redirect to login page  
+                var url = window.location.href;
+                //there can do clear form ...  
+                window.location.href = url+"?request=Login";
+            }
+        }
+    }
+</script>
+</body>
+</html>

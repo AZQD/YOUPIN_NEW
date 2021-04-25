@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li>11</li>
+    <li>12</li>
+    <li>13</li>
+</ul>
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('ul li').each(function(index, item){  //index：下标； item：当前项；
+            $(this).click(function(){
+                console.log(index, item);
+            });
+        });
+    });
+</script>
+</body>
+</html>

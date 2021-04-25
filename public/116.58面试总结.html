@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="x-dns-prefetch-control" content="on"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+</head>
+<body>
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript" src="js/public.js"></script>
+<script type="text/javascript">
+
+    /**总结：
+     * 1.cookie存储格式；
+     * 2.JSON转换；
+     * 3.jQuery扩展；
+     * 4.跨域总结；
+     * 5.sass;
+     */
+
+
+    //cookie只能以字符串存储，而且有长度限制问题，一般长度就4000多点的字节。
+    //用cookie保存对象 ，首先要对你新建的对象 进行json处理，不然你保存的只是一个 [object Object]
+    /*var obj = {
+        a:1,
+        b:2
+    };
+    obj = JSON.stringify(obj);
+    var objCookie = setCookie('objCookie', obj, 1);
+    console.log(getCookie('objCookie'));
+    console.log(typeof getCookie('objCookie'));
+    console.log(JSON.parse(getCookie('objCookie')));*/
+
+
+    /*storage只能存储字符串的数据，可以通过JSON对象提供的parse和stringify将其他数据类型转化成字符串，再存储到storage中就可以了。
+    * */
+    /*var obj = {
+        a:1,
+        b:2
+    };
+    obj = JSON.stringify(obj);
+    window.localStorage.setItem('objStorage', obj);
+    var objStorage = window.localStorage.getItem('objStorage');
+    console.log(objStorage);*/
+
+    /*
+    * jQuery扩展
+    * //给$对象添加
+     // 全选
+     $.fn.extend({
+     checkAll : function(){
+     this.prop('checked', true);
+     }
+     });
+
+     //给$添加
+     //去除字符串左侧空格
+     $.extend({
+     leftTrim : function(str){
+     return str.replace(/^\s+/, '');
+     }
+     });
+    *
+    * */
+
+
+</script>
+</body>
+</html>

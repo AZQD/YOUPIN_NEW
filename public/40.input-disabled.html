@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <select class="isEdited orderType" disabled="">
+        <option>等待付款</option>
+        <option>已完成</option>
+        <option>取消</option>
+        <option>关闭</option>
+    </select>
+</head>
+<body>
+<input type="text" value="1" disabled>
+<button id="btn">btn</button>
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+    $('#btn').click(function(){
+        $('.orderType').removeAttr('disabled');
+    });
+</script>
+</body>
+</html>

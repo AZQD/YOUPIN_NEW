@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    //递归函数
+    function fact(num){
+        if(num <= 1){
+            return 1;
+        }else{
+            return num*fact(num - 1);
+        }
+    }
+    console.log(fact(5));
+
+    //阶乘函数
+    function fact2(number){
+        var result = 1;
+        for(var i=1; i<= number; i++){
+            result *= i;
+        }
+        return result;
+    }
+    console.log(fact2(5));
+</script>
+</body>
+</html>

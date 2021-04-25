@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="button" value="jQuery ajax() GET请求" id="ajaxGetBtn"/><br>
+<input type="button" value="jQuery ajax() POST请求" id="ajaxPostBtn"/><br>
+<input type="button" value="jQuery get()请求" id="getBtn"/><br>
+<input type="button" value="jQuery post()请求" id="postBtn"/><br>
+<input type="button" value="jQuery getJSON()请求" id="getJSONBtn"/><br>
+<input type="button" value="jQuery post()请求 三级联动" id="getJSONBtn2"/><br>
+<input type="button" value="jQuery getJSON()请求 jsonp跨域" id="getJSONBtn3"/><span class="content"></span><br>
+<input type="button" value="jQuery getJSON()请求 cors跨域" id="getJSONBtn4"/><br>
+<input type="button" value="jQuery getJSON()请求 我的收藏test" id="storage"/><br>
+
+<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+<script type="text/javascript">
+    $(function(){
+        //1.jQuery ajax() GET请求
+        $('#ajaxGetBtn').on('click', function(){
+            $.ajax({
+                type : 'get',
+                url : '/node_ajax/test/get',
+                data : 'username=xiaoming',
+                timeout : 5000,
+                dataType : 'json',
+                success : function(data){
+
+                    console.log(data);
+                }
+            });
+        });
+
+        //2.jQuery ajax() POST请求
+        $('#ajaxPostBtn').on('click', function(){
+            $.ajax({
+                type : 'post',
+                data : 'username=bj&password=123',
+                url : '/node_ajax/test/post',
+                //dataType : 'jsonp',
+                success : function(data){
+                    console.log(data);
+                }
+            });
+        });
+
+        //3.jQuery get()请求
+        $('#getBtn').on('click', function(){
+            $.get('/node_ajax/test/get', {username:'liuyifei'}, function(data){
+                console.log(data);
+            });
+        });
+
+        //4.jQuery post()请求
+        $('#postBtn').on('click', function(){
+            $.post('/node_ajax/test/post', {username:'jingtian', password:'love'}, function(data){
+                console.log(data);
+            });
+        });
+
+        //5.jQuery getJSON()请求
+        $('#getJSONBtn').on('click', function(){
+            $.getJSON('/node_ajax/test/get', {username:'liuyifei'}, function(data){
+                console.log(data);
+            });
+        });
+
+        //6.jQuery post()请求 三级联动
+        $('#getJSONBtn2').on('click', function(){
+            $.post('/node_ajax/demo/province', function(data){
+                console.log(data);
+                $.each(data, function(index, item){
+                    console.log(index, item);
+                });
+            });
+        });
+
+        //7.jQuery getJSON()请求 jsonp跨域
+        $('#getJSONBtn3').on('click', function(){
+            /*$.getJSON('http://localhost:3000/node_ajax/test/cross_jsonp?callback=?', {username:'admin', password:'love'}, function(data){
+             console.log(data);
+             $('.content').html(data.result);
+             });*/
+            $.ajax({
+                type : 'get',
+                dataType : 'jsonp',
+                jsonp : 'callback',
+                jsonpCallback:"appAction",
+                url : 'http://localhost:3000/node_ajax/test/cross_jsonp?callback=?',
+                data : {username:'admin', password:'love'},
+                success : function(data){
+                    console.log(data);
+                }
+            });
+        });
+
+        //8.jQuery getJSON()请求 cors跨域
+        $('#getJSONBtn4').on('click', function(){
+            $.post('http://localhost:3000/node_ajax/test/cross_cors', 'username=beijing', function(data){
+                console.log(data);
+            });
+        });
+
+        //9.jQuery getJSON()请求 我的收藏test
+        $('#storage').on('click', function(){
+            var finalUrl = 'http://pm.picooc.com:9989/getPraise?version=23&userId=927732&roleId=1206526&appver=3.1.0.1&timestamp=1476692426&os=android&lang=zh_CN&method=lst&timeZone=Asia/Shanghai&sign=F677C97248BA385B4F8D48790D0A6FAE&device_id=862585030670084&pushToken=android::862585030670084&sid=280';
+            $.ajax({
+                type : 'get',
+                url : finalUrl,
+                dataType : 'json',
+                success : function(data){
+                    console.log(data);
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

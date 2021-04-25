@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" id="test" name="hello">
+    <input type="file" name="file">
+</form>
+<button id="btn">btn</button>
+<script type="text/javascript" src="js/jquery-1.10.1.js"></script>
+<script type="text/javascript">
+    $('#btn').click(function(){
+        var formData = new FormData($("#test")[0]);
+        console.log(formData);
+    });
+</script>
+</body>
+</html>

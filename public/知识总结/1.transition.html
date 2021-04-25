@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+            transition: all 2s 2s ease;
+            /*border-radius: 10px;*/
+        }
+    </style>
+</head>
+<body>
+<div class="box">box</div>
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('.box').on('click', function(){
+            $(this).css({
+                "height": '200',
+                "width":"200",
+                "background":"pink",
+                "borderRadius":'30'+'px',
+                "padding":'60'
+            }).html("hello");
+        });
+    });
+</script>
+</body>
+</html>

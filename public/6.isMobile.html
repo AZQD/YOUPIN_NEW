@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+        //定义页面顶部中间位置信息：title以及是否分享
+        appNoShare();
+        function appNoShare(){
+
+            var getPageInfo = function (){
+                var data = {
+                    title:'个人主页测试',
+                    isShare:false,
+                    backgroundColor:'#2c2f31'
+                };
+                console.log(data);
+                return JSON.stringify(data);
+            };
+        }
+
+        console.log(isMobile());
+        function isMobile(){
+            var os = new Array("Android","iPhone","Windows Phone","iPod","BlackBerry","MeeGo","SymbianOS");  // 其他类型的移动操作系统类型，自行添加 
+            var deviceType = navigator.userAgent;
+            var len = os.length;
+            var isinApp=isApp();
+            for (var i = 0; i<len; i++) {
+                if (deviceType.indexOf(os[i]) >= 0){
+                    if(isinApp){
+                        return "isApp";
+                    }
+                    return "isMobile";
+                }
+            }
+            return "isPC";
+        }
+        function isApp(){
+            var appOS=getParamByUrl("os");
+            var userId=getParamByUrl("userId");
+            if(appOS != "false" && userId != "false"){
+                return true;
+            }
+            return false;
+        }
+        function getParamByUrl(paramKey){
+            var url=window.location.search.substring(1);
+            var arr=url.split("&");
+            var result=[];
+            for(var i=0;i < arr.length;i++){
+                var param=arr[i].split("=");
+                if(paramKey == param[0]){
+                    return  param[1];
+                }
+            }
+            return "false";
+        }
+    </script>
+</body>
+</html>

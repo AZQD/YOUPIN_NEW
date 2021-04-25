@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #test{
+            width: 16rem;
+            display: inline-block;
+            background-color: fuchsia;
+        }
+    </style>
+</head>
+<body>
+<span id="test">hello</span>
+<script type="text/javascript">
+    //定义字体的函数
+    setRem();
+    window.addEventListener('onorientationchange' in window?'orientationchange':'resize', function(){
+        setRem();
+    },false);
+
+    function setRem (){ //重置字体rem
+        var html = document.querySelector('html');
+        var width = html.getBoundingClientRect().width;
+        console.log('html.getBoundingClientRect().width=' + html.getBoundingClientRect().width);
+        html.style.fontSize = width/16 + 'px';
+        console.log('html.style.fontSize='+html.style.fontSize);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="file" id="uploadBtn">
+<script src="http://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js"></script>
+<script type="text/javascript">
+    var client = new OSS.Wrapper({
+        region: 'oss-cn-beijing',
+        accessKeyId: '8eEYUX3uxui7eYDa',
+        accessKeySecret: 'DDySydwF0Htk51SlA40jEHUQuBJkCf',
+        bucket: 'picoocheadportrait'
+    });
+
+    client.list({
+        'max-keys': 10
+    }).then(function (result) {
+        console.log(result);
+    }).catch(function (err) {
+        console.log(err);
+    });
+    document.getElementById('uploadBtn').addEventListener('change', function (e) {
+        var file = e.target.files[0];
+        var storeAs = 'web/res/fatburnSystem/2/';
+        console.log(file.name + ' => ' + storeAs);
+        client.multipartUpload(storeAs+file.name, file).then(function (result) {
+            console.log(result);
+        }).catch(function (err) {
+            console.log(err);
+        });
+    });
+</script>
+</body>
+</html>

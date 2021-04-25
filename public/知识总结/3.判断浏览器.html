@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    var ua = window.navigator.userAgent;
+    console.log(ua);
+    if(/chrome/i.test(ua)){
+        alert("谷歌");
+    }else if(/firefox/i.test(ua)){
+        alert('火狐');
+    }else if("ActiveXObject" in window){
+        alert("IE");
+        console.log(window.ActiveXObject);
+    }
+</script>
+</body>
+</html>

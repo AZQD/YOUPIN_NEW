@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type=button id="btn" value="click" clicked="0" />
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+    var btn = $("#btn");
+    btn.click(function(){
+        if(btn.attr("clicked") == "0"){
+            alert(1);
+            //执行点击
+            //提交操作
+
+            btn.attr("clicked","1");
+        }else{
+            //不再执行点击操作
+            alert(2);
+        }
+    });
+</script>
+</body>
+</html>

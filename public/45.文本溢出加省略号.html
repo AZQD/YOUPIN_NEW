@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p id="text">有品燃脂营有品燃脂营</p>
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        /*$('p').on('click', function(){
+            console.log(1);
+            var length = $('p').html().length;
+            console.log($('#text').html());
+            console.log(length);
+            if(length > 5){
+                var result = $('#text').html().substring(0,5)+'...';
+                $('#text').html(result) ;
+            }
+        });*/
+        overText($('#text'), 5);
+        function overText(element, MaxLength){
+            var length = element.html().length;
+            if(length > MaxLength){
+                var result = $('#text').html().substring(0,MaxLength)+'...';
+                $('#text').html(result) ;
+            }
+        }
+    });
+</script>
+</body>
+</html>

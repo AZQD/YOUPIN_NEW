@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="box">判断是否为微信浏览器</div>
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('.box').click(function(){
+            if(isWeiXin() == true){
+                alert('是微信浏览器');
+            }else{
+                alert('不是微信浏览器');
+            }
+        });
+    });
+    function isWeiXin(){
+        var ua = window.navigator.userAgent.toLowerCase();
+        console.log(ua);
+        if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

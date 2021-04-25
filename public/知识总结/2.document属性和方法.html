@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>Title</title>
+    <style type="text/css">
+        body{
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="box">hello</div>
+    <script type="text/javascript">
+        /*toGMTString() 方法可根据格林威治时间 (GMT) 把 Date 对象转换为字符串，并返回结果。*/
+        function setCookie(c_name,value,expiredays){
+            var exdate=new Date();
+            exdate.setDate(exdate.getDate()+expiredays);
+            document.cookie=c_name+ "=" +escape(value)+((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
+        }
+        setCookie('year', '2017', 1);
+        console.log(document.cookie);
+
+        document.title = 'this is title';
+//        document.bgColor = 'pink';
+        document.fgColor = 'blue';
+        document.write(document.URL);
+        console.log(document.URL == window.location.href);//true
+        console.log(document);
+        var box = document.querySelector('.box');
+        console.log(box);
+
+
+    </script>
+</body>
+</html>

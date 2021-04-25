@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<select id="test">
+    <option value ="订单号">订单号</option>
+    <option value ="微信号">微信号</option>
+    <option value="微信昵称">微信昵称</option>
+    <option value="电话号">电话号</option>
+    <option value="有品账号">有品账号</option>
+</select>
+<button id="btn">btn</button>
+
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+    $('#btn').on('click', function(){
+        var result = $('#test option:selected').val();
+        alert(result);
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="test">
+    <li>01</li>
+    <li>02</li>
+    <li>03</li>
+    <li>04</li>
+    <li>05</li>
+</ul>
+<button id="btn">点我一下</button>
+    <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+        $('#btn').on('click', function(){
+            /*end() 方法结束当前链条中的最近的筛选操作，并将匹配元素集还原为之前的状态。*/
+            $('#test').children('li').css('color', 'red').end().css('border', '1px solid blue');
+        });
+    </script>
+</body>
+</html>

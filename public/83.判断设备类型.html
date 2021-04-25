@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    var userAgentInfo = navigator.userAgent;
+    var isAndroid = userAgentInfo.indexOf('Android') > -1 || userAgentInfo.indexOf('Adr') > -1;//android终端
+    var isiOS = !!userAgentInfo.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    alert(!!userAgentInfo.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/));
+    var isPc = function IsPC() {//是否是PC
+
+        var Agents = ["Android", "iPhone",
+            "SymbianOS", "Windows Phone",
+            "iPad", "iPod"];
+        var isPC = true;
+        for (var v = 0; v < Agents.length; v++) {
+            if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                isPC = false;
+                break;
+            }
+        }
+        return isPC;
+    };
+    if(isAndroid){
+        alert('安卓');
+    }else if(isiOS){
+        alert('iOS');
+    }else if(isPc()){
+        alert("PC");
+    }
+
+
+    //判断是否是微信
+    if (/MicroMessenger/i.test(userAgentInfo)){
+        alert('微信');
+    }
+</script>
+</body>
+</html>

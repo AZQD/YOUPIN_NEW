@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <title>我的订单</title>
+    <meta charset='utf-8' />
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style type="text/css">
+        /*方法1*/
+        .method1{
+            /*height: 3rem;*/
+            /*line-height:3rem;*/
+            background-color: deeppink;
+        }
+        .method1 *{
+            /*vertical-align: middle;!*关键的一步*!*/
+        }
+        .method1 span{
+            /*font-size: 0.8125rem;*/
+        }
+        .method1 img{
+            /*width: 0.40625rem;*/
+        }
+    </style>
+</head>
+<body>
+    <section class="container">
+        <!--文字和图片居中的方式-->
+        <!--方法1、在css中给div添加上“vertical-align:middle”属性-->
+        <aside class="row">
+            <div class="col-xs-12 col-sm-12 method1">
+                <span>等待付款</span><img src="image/1.jpg">
+            </div>
+        </aside>
+        <aside class="row">
+            <div class="col-xs-12 col-sm-12 method2">
+                等待付款
+            </div>
+        </aside>
+    </section>
+</body>
+</html>

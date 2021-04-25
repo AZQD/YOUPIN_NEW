@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">btn</button>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/base64.js"></script>
+<script type="text/javascript" src="js/jsencrypt.js"></script>
+
+
+<script type="text/javascript">
+    $(function(){
+        var b = new Base64_new();
+        var str = b.encode("hello");
+        console.log(str);
+
+
+        var publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC5jmTSO5V9ILlphRYdfFk4M2Rko/Ur22h43SxkFcGcj9Vkuew5P65XJPQtJesvY37UmU7zXWsqT/i4Evo2gaYu9Eu/fgutkP9KE4yKh4Ruk/pYC+hyNFVIK21kl4o8cfV9cKumydj2WXgmuywX8UQiVIfbKuvEAw+RVvPjBt9UqQIDAQAB";
+        var encrypt = new JSEncrypt();
+        encrypt.setPublicKey(publicKey);
+
+
+        var authKey = encrypt.encrypt(str);
+        // 加密
+        console.log(authKey);
+        console.log(authKey.length);
+    });
+</script>
+</body>
+</html>

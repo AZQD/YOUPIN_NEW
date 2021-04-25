@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <div style="height: 1000px;background-color: #bfa;"></div>
+    <li><img ypsrc="image/1.jpg" alt=""></li>
+    <li><img ypsrc="image/2.jpg" alt=""></li>
+    <li><img ypsrc="image/3.jpg" alt=""></li>
+    <li><img ypsrc="image/4.jpg" alt=""></li>
+    <li><img ypsrc="image/5.jpg" alt=""></li>
+    <li><img ypsrc="image/1.jpg" alt=""></li>
+    <li><img ypsrc="image/2.jpg" alt=""></li>
+    <li><img ypsrc="image/3.jpg" alt=""></li>
+    <li><img ypsrc="image/4.jpg" alt=""></li>
+    <li><img ypsrc="image/5.jpg" alt=""></li>
+    <li><img ypsrc="image/1.jpg" alt=""></li>
+    <li><img ypsrc="image/2.jpg" alt=""></li>
+    <li><img ypsrc="image/3.jpg" alt=""></li>
+    <li><img ypsrc="image/4.jpg" alt=""></li>
+    <li><img ypsrc="image/5.jpg" alt=""></li>
+    <li><img ypsrc="image/1.jpg" alt=""></li>
+    <li><img ypsrc="image/2.jpg" alt=""></li>
+    <li><img ypsrc="image/3.jpg" alt=""></li>
+    <li><img ypsrc="image/4.jpg" alt=""></li>
+    <li><img ypsrc="image/5.jpg" alt=""></li>
+</ul>
+    <script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+
+            console.log($("body").height()); //内容区高度
+            console.log($(window).height()); //桌面高度
+            console.log($(window).scrollTop()); //滚动条移动距离顶部距离
+
+            $(window).scroll(function(){
+                if($("body").height()-$(window).height()-$(window).scrollTop()<550){
+                    //getCollectionList();
+                }
+                $("li img").each(function(index, element) {
+                    var me=$(this);
+                    imgsrc(me);
+                });
+            });
+            
+            function imgsrc(me){
+                var ypsrc = me.attr('ypsrc');
+                var src = me.attr('src');
+                //var scrollTop = $(window).scrollTop();
+                var scrollTop = $(window).scrollTop();
+                var wHeight = $(window).height() ;
+                console.log(scrollTop, wHeight);
+                var extPxOffset=1500;
+                var ele_top = scrollTop - me.offset().top + wHeight;
+                var ele_bottom =  (me.offset().top + me.height()) - scrollTop ;
+                var btnview=(ele_top > 0 - extPxOffset && ele_top < wHeight + extPxOffset) || (ele_bottom > 0 - extPxOffset && ele_bottom < wHeight + extPxOffset) ;
+                if (  ypsrc && btnview) {
+                    if(me.attr('ypsrc')!='ok'){
+                        me.attr('src', ypsrc);
+                        me.attr('ypsrc', 'ok');
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #bfa;
+}
+.box {
+  width: 1rem;
+  height: 1rem;
+  background-color: red;
+}
+p {
+  background-color: fuchsia;
+}
+div {
+  border: 1px solid #ff7fa9;
+}
+a {
+  text-decoration: none;
+}

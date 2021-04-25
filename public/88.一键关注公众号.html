@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>一键关注公众号</title>
+</head>
+<body>
+<button id="test">公众开发平台</button>
+<!--<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    $('#test').click(function(){
+        window.location.href = "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzI3OTA1ODQ4Mw==&scene=110#wechat_redirect";
+    });
+</script>
+</body>
+</html>

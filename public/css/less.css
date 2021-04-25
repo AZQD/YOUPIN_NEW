@@ -1,0 +1,20 @@
+body {
+    background-color: #0000ff;
+}
+
+body h1 {
+    white-space: nowrap;
+}
+
+div {
+    background-color: firebrick;
+}
+
+span {
+    color: firebrick;
+    font-size: 20px;
+}
+
+p {
+    font: BatangChe;
+}

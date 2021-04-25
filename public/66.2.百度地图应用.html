@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+  <link href="image/icon.png" rel="shortcut icon" type="image/x-icon"/>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ta67M7R4GGToWMiWGfG5PajOXzQMwBik"></script>
+  <title>百度地图应用</title>
+  <style type="text/css">
+    #mapBox {
+      width: 100%;
+      height: 360px;
+    }
+    .searchBox {
+      display: flex;
+    }
+    .searchBox input {
+      flex-grow: 1;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+
+<div id="mapBox"></div>
+
+<button id="getCenter">获取中心点坐标point</button>
+
+<div class="searchBox">
+  <input id="searchIpt1" type="text" placeholder="获取关键词对应的位置坐标point(不好用，很多搜不出来)"/>
+  <button id="searchBtn1">A搜索</button>
+</div>
+
+<div class="searchBox">
+  <input id="searchIpt2" type="text" placeholder="获取关键词对应的位置坐标point(很好用，属于模糊搜索)"/>
+  <button id="searchBtn2">B搜索</button>
+</div>
+<div id="searchList"></div>
+
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+    //官方文档：
+    //http://lbsyun.baidu.com/index.php?title=jspopular
+    //http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html
+    //朱岗村point:{lng: 114.29626, lat: 34.473097}
+
+    //创建地图基础的三步
+    var map = new BMap.Map('mapBox');// 创建地图实例
+    window.map = map;//将map变量存储在全局
+    var point = new BMap.Point(116.404, 39.915);// 创建点坐标
+    map.centerAndZoom(point, 15);// 初始化地图，设置中心点坐标和地图级别
+
+
+    //相关事件
+    map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+    map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+    map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+    map.enableKeyboard();//启用键盘上下左右键移动地图
+
+
+    //获取当前所在位置
+    var geolocation = new BMap.Geolocation();//定位
+    geolocation.getCurrentPosition(function (res) {
+        if (this.getStatus() === BMAP_STATUS_SUCCESS) {
+            console.log("获取当前所在位置：", res);
+        } else {
+            alert('未获取到当前定位');
+        }
+    });
+
+
+    //获取中心点坐标point：
+    $('#getCenter').unbind('click').bind('click', function () {
+        console.log('获取中心点坐标point：', map.getCenter());
+    });
+
+
+    //逆地址解析（根据point获取地址信息）(包含附近地址信息数组)
+    var geocoder = new BMap.Geocoder();// 创建地址解析器实例
+    var point1 = new BMap.Point(116.404, 39.915);// 创建点坐标
+    inverseAddress(point1);
+    function inverseAddress(point) {
+        geocoder.getLocation(point, function (res) { //比如解析北京天安门的point
+            console.log('调用逆地址解析：比如解析北京天安门的point', res);
+        }, {
+            poiRadius: 10000,//多少米之内
+            numPois: 10 //附近地点信息展示数量
+        });
+    }
+
+
+    //地址解析
+    //第一种：获取关键词对应的位置坐标point(不好用，很多搜不出来)
+    var city1 = '郑州市'; // city1为地址所在的城市名（可选参数）
+    function searchFun1(searchVal) {
+        geocoder.getPoint(searchVal, function (res) {
+            if (res) {
+                console.log(searchVal + '坐标：', res);
+            } else {
+                alert('没有匹配项');
+            }
+        }, city1);
+    }
+    $('#searchBtn1').unbind('click').bind('click', function () {
+        var searchVal = $.trim($('#searchIpt1').val());
+        searchFun1(searchVal);
+    });
+
+    //第二种：获取关键词对应的位置坐标point(很好用)(包含附近地址信息数组)
+    var params2 = '郑州市'; //location表示检索区域，其类型可为地图实例、坐标点或城市名称的字符串（优先搜郑州的，也可以搜到其他地区）
+    function searchFun2(searchVal) {
+        new BMap.LocalSearch(params2, {
+            renderOptions: {map: map, panel: "searchList"},//searchList为搜索列表的id，会自动将搜索结果渲染在searchList上面；
+            onSearchComplete: function (data) {
+                console.log('获取关键词对应的位置坐标point(很好用，属于模糊搜索)', data);
+            }
+        }).search(searchVal);
+    }
+    $('#searchBtn2').unbind('click').bind('click', function () {
+        var searchVal = $.trim($('#searchIpt2').val());
+        searchFun2(searchVal);
+    });
+
+
+    //搜索后创建自动完成的实例，并在页面上展示出来
+    var autoSearchVal = new BMap.Autocomplete(
+        {
+            "input": "searchIpt2",
+            "location": map,
+            onSearchComplete: function (res) {
+                console.log('输入搜索内容自动请求数据：', res);
+            }
+        }
+    );
+
+    //鼠标点击自动搜索列表的事件
+    autoSearchVal.addEventListener("onconfirm", function (e) {
+        var _value = e.item.value;
+        console.log('鼠标点击自动搜索列表的事件', e);
+    });
+
+</script>
+</body>
+</html>

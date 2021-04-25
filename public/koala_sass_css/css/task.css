@@ -1,0 +1,20 @@
+@import url("reset.css");
+body {
+  background-color: #f0f0f0; }
+  body .wrap {
+    width: 200px;
+    height: 200px;
+    background-color: yellow; }
+
+.boxBorder {
+  width: 50%;
+  border: 1px solid #ccc;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+a {
+  text-decoration: none;
+  color: pink; }
+  a:hover {
+    color: #ff8da1; }

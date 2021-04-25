@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>Title</title>
+    <style type="text/css">
+        img{
+            width:100%;
+        }
+    </style>
+    <script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+</head>
+<body>
+<img src="image/title1.png">
+<hr/>
+<img src="image/title2.png" onerror="hideImg(this);">
+<hr/>
+<img src="image/title.png">
+
+<script type="text/javascript">
+    function hideImg(me){
+        console.log(me);
+        $(me).css("display","none");
+    }
+</script>
+</body>
+</html>
